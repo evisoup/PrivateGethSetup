@@ -43,3 +43,16 @@ https://github.com/RubixByDeloitte/rubix-dapp-dvote/blob/1206ca9459dd388e8290450
 
 allocate initial funds:
 https://github.com/ethereum/pyethapp/wiki/Custom-genesis
+
+
+
+//////////////////////////GAS
+GAS needed:
+sc.name.estimateGas(param)
+
+SPECIFY GAS
+greeter.ReceiveFromDBTEST([1,2,3,4],{gas:200000})
+
+CHECK:
+eth.getTransactionReceipt(hash)
+eth.getTransaction(hash)

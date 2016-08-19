@@ -9,28 +9,23 @@ web3.eth.defaultAccount = web3.eth.coinbase;
 
 //var greeterSource = 'contract mortal { /* Define variable owner of the type address*/ address owner; /* this function is executed at initialization and sets the owner of the contract */ function mortal() { owner = msg.sender; } /* Function to recover the funds on the contract */ function kill() { if (msg.sender == owner) selfdestruct(owner); } } contract greeter is mortal { /* define variable greeting of the type string */ string public greeting; uint public counter; /* this runs when the contract is executed */ function greeter(string _greeting) public { greeting = _greeting; counter = 0; } /* main function */ function greet() constant returns (string) { counter = counter + 1; return greeting; } /* main function */ function bye() returns (string) { counter = counter + 1; return greeting; } }';
 
-var sol = fs.readdirSync('./contracts');
 
 
-sol.forEach(function(file){
-		try {
-			source = fs.readFileSync('./contracts/' + file, 'utf8');
-			greeterCompiled = web3.eth.compile.solidity(source);
 
-		} catch (err) {console.log(err)}
-	});
+			 var source = fs.readFileSync('./contracts/' + 'ClaimDiscovery.sol', 'utf8');
+			 var scCompiled = web3.eth.compile.solidity(source);
+
 
 
 
 //var greeterCompiled = web3.eth.compile.solidity(greeterSource);
 
 
-var _greeting = "Hello World with counter 6!"
-var greeterContract = web3.eth.contract(greeterCompiled.greeter.info.abiDefinition);
+var claimContract = web3.eth.contract(scCompiled.ClaimDiscovery.info.abiDefinition);
 
 //var greeter = web3.eth.contract(greeterCompiled.greeter.info.abiDefinition).at("0xd69dd2f38256a11cba3a8575d08eec5d01cfb7cb")
 
-var greeter = greeterContract.new(_greeting,{from:web3.eth.accounts[0], data: greeterCompiled.greeter.code, gas: 300000}, function(e, contract){
+var claimInstance = claimContract.new( {from:web3.eth.accounts[0], data: scCompiled.ClaimDiscovery.code, gas: 3000000}, function(e, contract){
    if(!e) {
 
      if(!contract.address) {
@@ -40,7 +35,9 @@ var greeter = greeterContract.new(_greeting,{from:web3.eth.accounts[0], data: gr
        console.log("Contract mined! Address: " + contract.address);
      }
 
-   }
+   }else{
+	console.log(e);
+}
 })
 
 

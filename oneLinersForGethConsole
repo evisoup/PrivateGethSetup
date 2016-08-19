@@ -1,0 +1,33 @@
+
+var greeterSource = 'contract mortal { /* Define variable owner of the type address*/ address owner; /* this function is executed at initialization and sets the owner of the contract */ function mortal() { owner = msg.sender; } /* Function to recover the funds on the contract */ function kill() { if (msg.sender == owner) selfdestruct(owner); } } contract greeter is mortal { /* define variable greeting of the type string */ string public greeting; uint public counter; /* this runs when the contract is executed */ function greeter(string _greeting) public { greeting = _greeting; counter = 10; } /* main function */ function greet() constant returns (string) { counter = counter + 1; return greeting; } function byebye() returns (string) { counter = counter + 1; return greeting; } }';
+
+var greeter = web3.eth.contract(greeterCompiled.greeter.info.abiDefinition).at("0xa8ea9f49f3104d626d4a72bb997f7812fe47aa52")
+
+
+
+
+
+
+
+var greeter = greeterContract.new( {from:web3.eth.accounts[0], data: greeterCompiled.ClaimDiscovery.code, gas: 3000000}, function(e, contract){})
+
+
+
+
+
+
+
+
+
+
+var greeterSource = 'contract ClaimDiscovery { /* Geth node owner*/ address owner; /* for testing purpose*/ string public zipcode; uint public arrayLen; uint public index; uint[] public arrayID; uint[2] public testArray; /*the event SC will fire once a zip code is passed to it*/ event SendNotificationToDB( string _zipCode); event ImpactedCustomerID( uint _customerID); /*SC constructor: set the owner */ function ClaimDiscovery(){ owner = msg.sender; testArray[0]=11; testArray[1]=22; } /*the function that front end app js will call, with a zipcode*/ /*to trigger ARROW 1(i.e US1)*/ function NotifyDB( string _zipCode) byTheOwner(){ zipcode = _zipCode; SendNotificationToDB(_zipCode); } /*receive a array of uin(customer ID)*/ /*fire off events during iteration to trigger SMS notification*/ /*to trigger ARROW 2(i.e US2+US3)*/ function ReceiveFromDB( uint[] _customerIDs){ uint len = _customerIDs.length; arrayLen = len; arrayID = _customerIDs; for (uint i = 0; i < len; i++){ ImpactedCustomerID(_customerIDs[i] ); } } function ReceiveFromDBTEST( uint[] _customerIDs){ arrayLen = _customerIDs.length; index = _customerIDs[0]; arrayID = _customerIDs; } /*ensure its the SC owner calling, not someone else*/ modifier byTheOwner () { if (msg.sender == owner) _ } }';
+var greeterCompiled = web3.eth.compile.solidity(greeterSource);
+
+var greeterContract = web3.eth.contract(greeterCompiled.ClaimDiscovery.info.abiDefinition);
+
+
+
+
+var greeter = web3.eth.contract(greeterCompiled.ClaimDiscovery.info.abiDefinition).at("0x54ec6bde26968ed753308b37335dba59e724944b")
+
+
