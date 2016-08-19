@@ -1,0 +1,102 @@
+
+
+i-08c7a395
+
+ec2-54-88-40-91.compute-1.amazonaws.com
+
+/home/rubix1/Desktop/rubix2.pem
+/home/rubix1/Desktop/HengyiKeyPair.pem
+/home/rubix1/Desktop/HengyiKeyPair2.pem
+
+ssh:
+ssh -i /home/rubix1/Desktop/rubix2.pem ubuntu@ec2-54-173-0-117.compute-1.amazonaws.com
+
+
+restart:
+nohup node server.js 1>dvote.out 2>&1 &
+
+
+
+
+
+remove:
+ rm -r .rubix .eth:qash .web3
+
+
+
+
+
+
+
+ssh -i /home/rubix1/Desktop/HengyiKeyPair.pem ubuntu@ec2-54-172-8-249.compute-1.amazonaws.com
+54.172.8.249
+
+
+ssh -i /home/rubix1/Desktop/HengyiKeyPair2.pem ubuntu@ec2-54-183-248-76.us-west-1.compute.amazonaws.com
+
+
+nohup npm start >myLog.out 2>&1 &
+
+pm2 start processes.json >relay-start.out
+
+
+
+////////////////////////////////////////////////////
+
+geth 
+
+if [ $# = 1 ] && [ $1 = "quick" ] ; then
+	 geth --password res/pass account new
+	 nohup geth --rpc --rpcapi "web3, eth, miner, personal, admin" --mine --etherbase 0  \
+	 --unlock 0 --password res/pass --solc $SOLC &> logs/geth.log &
+else
+	if [ ! -d ~/.ethereum ] || [ ! -f ~/.ethereum/keystore ]; then
+		geth account new
+	fi
+	nohup geth --rpc --rpcapi "web3, eth, miner, personal, admin" --mine --etherbase 0  \
+		--solc $SOLC &> logs/geth.log &
+fi
+
+
+geth --mine --unlock 0 --password password --nodiscover --networkid "1" --genesis /home/rubix1/Desktop/genesis.json
+
+geth attach ipc:.ethereum/geth.ipc
+
+geth --rpc --rpcapi web3,eth,miner --solc /usr/bin/solc --mine --etherbase 0 --networkid 54321 --nodiscover --unlock 0,1,2,3,4 
+
+
+
+
+
+Problem with MergeList /var/lib/apt/lists/repo.mongodb.org_apt_debian_dists_wheezy_mongodb-org_3.0_main_binary-amd64_Packages
+
+sudo rm -vf /var/lib/apt/lists/*
+
+sudo apt-get update
+
+
+
+
+
+STARBUCKS:
+
+First create 2 accounts, use their addresses in the genesis and for the network provider
+[11:59]  
+then run `geth --genesis ./res/genesis.json --mine --unlock 0 --nodiscover --networkid "7"`
+[12:00]  
+and enter the password for the first account you created
+
+
+
+
+
+geth --genesis ./res/genesis.json --mine --unlock 0 --nodiscover --networkid "7"
+
+
+
+
+
+
+
+
+

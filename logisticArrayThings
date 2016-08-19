@@ -1,0 +1,93 @@
+logistic:
+
+1: mo's tool
+	geth install, start, SC build, deploy
+
+
+
+
+
+
+
+
+///////////////////arrays:
+
+https://github.com/ethereum/wiki/wiki/Solidity-Features
+contract c {
+  uint[] x;
+  function f(uint[] memoryArray) {
+    x = memoryArray; // works, copies the array to storage
+    var y = x; // works, assigns a pointer
+    y[7]; // fine, returns the 8th element
+    y.length = 2; // fine, modifies storage
+    delete x; // fine, clears the array
+    // y = memoryArray; // does not work, would need to create a new temporary / unnamed array in storage, but storage is "statically" allocated
+    // delete y; // does not work, would set pointer to zero and does not make sense for pointer
+  }
+}
+
+in memory:  uint[] memory x = new uint[](100);
+
+
+///////////// all kinds of test on array
+// contract a {
+
+// event b(uint c);
+
+// function d(){
+
+//     b(10);
+// }
+// }
+
+
+contract FloodEvent {
+
+    uint[9] a;
+    event arrayEvent( uint[] );
+    uint[] g;
+    uint[] h;
+
+    function FloodEvent(){
+        a[2] = 5;
+        uint[] memory x = new uint[](2);
+        x[0]=9;
+        x[1]=9;
+        g = a;
+        h = x;
+
+    }
+
+
+
+    // function gg( uint[] x)
+    function gg( )
+       returns (uint) {
+           arrayEvent( g );
+           arrayEvent( h );
+        uint[] memory x = new uint[](2);
+        x[0]=9;
+        x[1]=9;
+        h = x;     
+        delete h;
+        arrayEvent( h );
+           
+        //return a.length; 
+        return a[2]; 
+    }
+
+    //[8,9] takes a array param
+    function arryaInput( uint256[] i)
+           returns (uint[]) {
+               uint[] memory gg = new uint[](2);
+               gg[0] = gg.length;
+               gg[1] = i.length;
+               arrayEvent(i);
+            return gg;
+        }
+
+}
+///////////////////////////////////////////////////////////
+
+
+}

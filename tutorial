@@ -1,0 +1,45 @@
+purge:
+rm -rf ~/.ethereum ~./ethas
+
+stop:
+ps ax | grep eth
+
+solc: trying
+echo "contract Test {}"|solc
+
+1: genesis block
+
+2: geth init genesis.json
+
+3: geth acount new  OR  geth --password PATH account new
+
+4: nohub *** > PATHtoLog.log 2>&1 &
+
+*** == geth --rpc --rpcapi web3,eth,miner --solc /usr/bin/solc --mine  --networkid 54321 --nodiscover --unlock 0 --password password
+
+=> nohup geth --rpc --rpcapi web3,eth,miner --solc /usr/bin/solc --mine  --networkid 54321 --nodiscover --unlock 0 --password pass > gethLog.log 2>&1 &
+
+5: eth.defaultAccount = eth.accounts[0]
+
+
+TRY MO'S TOOL DELETING ALL OTHER CODE
+
+////////////////////////////////////////////// hello world:
+
+
+var greeterSource = 'contract mortal { address owner; function mortal() { owner = msg.sender; } function kill() { if (msg.sender == owner) selfdestruct(owner); } } contract greeter is mortal { string greeting; function greeter(string _greeting) public { greeting = _greeting; } function greet() constant returns (string) { return greeting; } }'
+
+var greeterCompiled = web3.eth.compile.solidity(greeterSource)
+
+
+to grab:
+https://github.com/RubixByDeloitte/rubix-dapp-dvote/blob/master/smart-contracts/StockExchange.js
+
+
+web3 example:
+"var existingStock = web3.eth.contract(StockExchangeSC.ABI).at(req.body.stockAddress);"
+https://github.com/RubixByDeloitte/rubix-dapp-dvote/blob/1206ca9459dd388e829045018df4622efef6c530/lib/dVoteAPI.js
+
+
+allocate initial funds:
+https://github.com/ethereum/pyethapp/wiki/Custom-genesis
