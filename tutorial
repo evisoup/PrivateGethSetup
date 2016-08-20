@@ -1,5 +1,5 @@
 purge:
-rm -rf ~/.ethereum ~./ethas
+rm -rf ~/.ethereum ~./ethash
 
 stop:
 ps ax | grep eth
@@ -22,14 +22,10 @@ echo "contract Test {}"|solc
 5: eth.defaultAccount = eth.accounts[0]
 
 
-TRY MO'S TOOL DELETING ALL OTHER CODE
+
 
 ////////////////////////////////////////////// hello world:
 
-
-var greeterSource = 'contract mortal { address owner; function mortal() { owner = msg.sender; } function kill() { if (msg.sender == owner) selfdestruct(owner); } } contract greeter is mortal { string greeting; function greeter(string _greeting) public { greeting = _greeting; } function greet() constant returns (string) { return greeting; } }'
-
-var greeterCompiled = web3.eth.compile.solidity(greeterSource)
 
 
 to grab:
@@ -43,6 +39,14 @@ https://github.com/RubixByDeloitte/rubix-dapp-dvote/blob/1206ca9459dd388e8290450
 
 allocate initial funds:
 https://github.com/ethereum/pyethapp/wiki/Custom-genesis
+
+"alloc": {
+
+   	"64cdede070175fdda91963f4966ca2c5fcb613c5": {
+      "balance": "15000000000000000000000"
+    }
+}
+
 
 
 
